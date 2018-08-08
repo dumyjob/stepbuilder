@@ -1,0 +1,133 @@
+<idea-plugin>
+  <version>1.0.0</version>
+  <idea-version since-build="173.4674" until-build="173.*"/>
+  <id>com.markbolo.stepbuilder</id>
+  <name>StepBuilder Generator fork</name>
+  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <description>
+    &lt;p&gt;This plugin generates a Builder class following the Step Builder pattern so that you can build instances of
+    your class more easily in a guided manner. &lt;/p&gt;
+
+    &lt;em&gt;Here is an example:&lt;/em&gt;
+    &lt;pre&gt;
+    &lt;code&gt;
+
+   public class Server{
+
+    final static int DEFAULT_PORT = 8080;
+
+    private String protocol;
+    private String url;
+    private String ipAddress;
+    private int port;
+    private String description;
+    private long uptime;
+
+    private Server(Builder builder) {
+        this.protocol = builder.protocol;
+        this.url = builder.url;
+        this.ipAddress = builder.ipAddress;
+        this.port = builder.port;
+        this.description = builder.description;
+        this.uptime = builder.uptime;
+    }
+
+    public static IProtocol builder() {
+        return new Builder();
+    }
+
+
+    public interface IBuild {
+        Server build();
+    }
+
+    public interface IUptime {
+        IBuild uptime(long uptime);
+    }
+
+    public interface IDescription {
+        IUptime description(String description);
+    }
+
+    public interface IPort {
+        IDescription port(int port);
+    }
+
+    public interface IIpAddress {
+        IPort ipAddress(String ipAddress);
+    }
+
+    public interface IUrl {
+        IIpAddress url(String url);
+    }
+
+    public interface IProtocol {
+        IUrl protocol(String protocol);
+    }
+
+    public static final class Builder implements IUptime, IDescription, IPort, IIpAddress, IUrl, IProtocol, IBuild {
+        private long uptime;
+        private String description;
+        private int port;
+        private String ipAddress;
+        private String url;
+        private String protocol;
+
+        private Builder() {
+        }
+
+        @Override
+        public IBuild uptime(long uptime) {
+            uptime = uptime;
+            return this;
+        }
+
+        @Override
+        public IUptime description(String description) {
+            description = description;
+            return this;
+        }
+
+        @Override
+        public IDescription port(int port) {
+            port = port;
+            return this;
+        }
+
+        @Override
+        public IPort ipAddress(String ipAddress) {
+            ipAddress = ipAddress;
+            return this;
+        }
+
+        @Override
+        public IIpAddress url(String url) {
+            url = url;
+            return this;
+        }
+
+        @Override
+        public IUrl protocol(String protocol) {
+            protocol = protocol;
+            return this;
+        }
+
+        public Server build() {
+            return new Server(this);
+        }
+    }
+}
+    &lt;/code&gt;
+    &lt;/pre&gt;
+    </description>
+  <change-notes>
+      Add change notes here.&lt;br&gt;
+      &lt;em&gt;1.0.0 fork online.devliving step-builder, change param name and method name&lt;/em&gt;</change-notes>
+  <extensions defaultExtensionNs="com.intellij"/>
+  <actions>
+    <action id="online.devliving.stepbuilder.generator.generate" class="online.devliving.stepbuilder.generator.StepBuilderAction" text="Step Builder" description="Generates a Builder following Step Builder pattern">
+      <add-to-group group-id="GenerateGroup" anchor="after" relative-to-action="JavaGenerateGroup2"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl S"/>
+    </action>
+  </actions>
+</idea-plugin>
