@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.markbolo.stepbuilder</id>
     <name>StepBuilder Generator fork</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="shenxf_T_1000@163.com" url="http://www.markbolo.com"></vendor>
 
     <description><![CDATA[
     <p>This plugin generates a Builder class following the Step Builder pattern so that you can build instances of
